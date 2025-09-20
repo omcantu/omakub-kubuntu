@@ -77,56 +77,89 @@ web2app-remove() {
 
 # Move a reference to a .desktop file, like Spotify.desktop, to a named folder, like Xtra.
 # Don't use full path for the .desktop file.
+# KDE: Move a .desktop file to a named folder (category) in the application menu
 app2folder() {
   if [ "$#" -ne 2 ]; then
-    local FOLDERS=$(gsettings get org.gnome.desktop.app-folders folder-children | tr -d "[],'")
-    echo "Usage: app2folder <desktop_file.desktop> <folder_name>"
-    echo "Folders: $FOLDERS"
+    echo "Usage: app2folder <desktop_file.desktop> <category>"
+    echo "Example categories: Multimedia, Internet, Office, Games, Graphics, System, Utilities"
     return 1
   fi
 
   local DESKTOP_FILE="$1"
-  local FOLDER="$2"
-  local SCHEMA="org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$FOLDER/"
-  local CURRENT_APPS=$(gsettings get "$SCHEMA" apps)
+  local CATEGORY="$2"
+  local DESKTOP_PATH="$HOME/.local/share/applications/$DESKTOP_FILE"
 
-  if [[ "$CURRENT_APPS" != *"$DESKTOP_FILE"* ]]; then
-    local TRIMMED=$(echo "$CURRENT_APPS" | sed "s/^\[//;s/\]$//")
-    gsettings set "$SCHEMA" apps "[$TRIMMED, '$DESKTOP_FILE']"
+  if [ ! -f "$DESKTOP_PATH" ]; then
+    echo "Error: $DESKTOP_PATH not found."
+    return 1
+  fi
+
+  # Update or add the Categories field
+  if grep -q "^Categories=" "$DESKTOP_PATH"; then
+    sed -i "s|^Categories=.*|Categories=$CATEGORY;|" "$DESKTOP_PATH"
+  else
+    echo "Categories=$CATEGORY;" >> "$DESKTOP_PATH"
+  fi
+
+  update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1
+  echo "$DESKTOP_FILE moved to category $CATEGORY."
+}
+
+# Remove desktop app from folder (KDE version)
+app2folder-remove() {
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: app2folder-remove <desktop_file.desktop> <category>"
+    echo "Example categories: Multimedia, Internet, Office, Games, Graphics, System, Utilities"
+    return 1
+  fi
+
+  local DESKTOP_FILE="$1"
+  local CATEGORY="$2"
+  local DESKTOP_PATH="$HOME/.local/share/applications/$DESKTOP_FILE"
+
+  if [ ! -f "$DESKTOP_PATH" ]; then
+    echo "Error: $DESKTOP_PATH not found."
+    return 1
+  fi
+
+  # Remove the category from the Categories field
+  if grep -q "^Categories=" "$DESKTOP_PATH"; then
+    local NEW_CATEGORIES=$(grep "^Categories=" "$DESKTOP_PATH" | sed "s|Categories=||" | sed "s|$CATEGORY;||g")
+    if [ -z "$NEW_CATEGORIES" ]; then
+      # Remove the Categories line entirely if empty
+      sed -i "/^Categories=/d" "$DESKTOP_PATH"
+    else
+      sed -i "s|^Categories=.*|Categories=$NEW_CATEGORIES|" "$DESKTOP_PATH"
+    fi
+    update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1
+    echo "$DESKTOP_FILE removed from category $CATEGORY."
+  else
+    echo "No Categories field found in $DESKTOP_FILE."
   fi
 }
 
-# Remove desktop app from folder
-app2folder-remove() {
-  if [ "$#" -ne 2 ]; then
-    local FOLDERS=$(gsettings get org.gnome.desktop.app-folders folder-children | tr -d "[],'")
-    echo "Usage: app2folder-remove <desktop_file.desktop> <folder_name>"
-    echo "Folders: $FOLDERS"
+  local DESKTOP_FILE="$1"
+  local CATEGORY="$2"
+  local DESKTOP_PATH="$HOME/.local/share/applications/$DESKTOP_FILE"
+
+  if [ ! -f "$DESKTOP_PATH" ]; then
+    echo "Error: $DESKTOP_PATH not found."
     return 1
   fi
 
-  local DESKTOP_FILE="$1"
-  local FOLDER="$2"
-  local SCHEMA="org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/$FOLDER/"
-  local CURRENT_APPS=$(gsettings get "$SCHEMA" apps)
-
-  if [[ "$CURRENT_APPS" == *"$DESKTOP_FILE"* ]]; then
-    local RAW_LIST=$(echo "$CURRENT_APPS" | tr -d "[]'")
-    IFS=',' read -ra APPS_ARRAY <<< "$RAW_LIST"
-
-    # Filter out the app to be removed
-    local NEW_APPS=()
-    for app in "${APPS_ARRAY[@]}"; do
-      app=$(echo "$app" | xargs) # trim spaces
-      if [[ "$app" != "$DESKTOP_FILE" && -n "$app" ]]; then
-        NEW_APPS+=("'$app'")
-      fi
-    done
-
-    # Join list again
-    local NEW_LIST=$(IFS=, ; echo "${NEW_APPS[*]}")
-
-    gsettings set "$SCHEMA" apps "[$NEW_LIST]"
+  # Remove the category from the Categories field
+  if grep -q "^Categories=" "$DESKTOP_PATH"; then
+    local NEW_CATEGORIES=$(grep "^Categories=" "$DESKTOP_PATH" | sed "s|Categories=||" | sed "s|$CATEGORY;||g")
+    if [ -z "$NEW_CATEGORIES" ]; then
+      # Remove the Categories line entirely if empty
+      sed -i "/^Categories=/d" "$DESKTOP_PATH"
+    else
+      sed -i "s|^Categories=.*|Categories=$NEW_CATEGORIES|" "$DESKTOP_PATH"
+    fi
+    update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1
+    echo "$DESKTOP_FILE removed from category $CATEGORY."
+  else
+    echo "No Categories field found in $DESKTOP_FILE."
   fi
 }
 

@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Only ask for default desktop app choices when running Gnome
-if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+# Replacing check for Gnome with KDE since this is for Kubuntu
+# TODO: make sure that these apps do not require GNOME specifically
+if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
   OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox")
   DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom'
   export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 7 --header "Select optional apps" | tr ' ' '-')

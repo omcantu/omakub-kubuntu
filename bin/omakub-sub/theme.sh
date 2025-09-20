@@ -18,8 +18,7 @@ if [ -n "$THEME" ] && [ "$THEME" != "<<-back" ]; then
     sed -i "s/color_theme = \".*\"/color_theme = \"Default\"/g" ~/.config/btop/btop.conf
   fi
 
-  source $OMAKUB_PATH/themes/$THEME/gnome.sh
-  source $OMAKUB_PATH/themes/$THEME/tophat.sh
+
   source $OMAKUB_PATH/themes/$THEME/vscode.sh
 
   # Forgo setting the Chrome theme until we might find a less disruptive way of doing it.

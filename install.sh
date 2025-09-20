@@ -15,11 +15,12 @@ source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
 source ~/.local/share/omakub/install/first-run-choices.sh
 source ~/.local/share/omakub/install/identification.sh
 
-# Desktop software and tweaks will only be installed if we're running Gnome
-if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-  # Ensure computer doesn't go to sleep or lock while installing
-  gsettings set org.gnome.desktop.screensaver lock-enabled false
-  gsettings set org.gnome.desktop.session idle-delay 0
+# Desktop software and tweaks will only be installed if we're running KDE
+if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
+  # Ensure computer doesn't go to sleep or lock while installing (KDE/Plasma)
+  kwriteconfig5 --file kscreenlockerrc --group Daemon --key Autolock false
+  kwriteconfig5 --file powermanagementprofilesrc --group AC --key idleTime 0
+
 
   echo "Installing terminal and desktop tools..."
 
@@ -29,9 +30,10 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
   # Install desktop tools and tweaks
   source ~/.local/share/omakub/install/desktop.sh
 
-  # Revert to normal idle and lock settings
-  gsettings set org.gnome.desktop.screensaver lock-enabled true
-  gsettings set org.gnome.desktop.session idle-delay 300
+  # Revert to normal idle and lock settings (KDE/Plasma)
+  kwriteconfig5 --file kscreenlockerrc --group Daemon --key Autolock true
+  kwriteconfig5 --file powermanagementprofilesrc --group AC --key idleTime 300
+
 else
   echo "Only installing terminal tools..."
   source ~/.local/share/omakub/install/terminal.sh
