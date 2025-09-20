@@ -2,4 +2,4 @@
 
 envsubst < ~/.local/share/omakub/configs/xcompose > ~/.XCompose
 ibus restart
-gsettings set org.gnome.desktop.input-sources xkb-options "['compose:caps']"
+kwriteconfig6 --file ~/.config/kxkbrc --group Layout --key Options "compose:caps"
