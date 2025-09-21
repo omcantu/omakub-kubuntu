@@ -17,6 +17,7 @@ source ~/.local/share/omakub/install/identification.sh
 
 # Desktop software and tweaks will only be installed if we're running KDE
 if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
+  echo "Installing desktop tools and terminal tools"
   # Ensure computer doesn't go to sleep or lock while installing (KDE/Plasma)
   kwriteconfig5 --file kscreenlockerrc --group Daemon --key Autolock false
   kwriteconfig5 --file powermanagementprofilesrc --group AC --key idleTime 0
