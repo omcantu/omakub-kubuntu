@@ -11,19 +11,19 @@ if [[ -n "$apps" ]]; then
     case $app in
     "Chat GPT")
       web2app-remove 'Chat GPT'
-      app2folder-remove 'Chat GPT.desktop' WebApps
+      #app2folder-remove 'Chat GPT.desktop' WebApps
       ;;
     "Google Photos")
       web2app-remove 'Google Photos'
-      app2folder-remove 'Google Photos.desktop' WebApps
+      #app2folder-remove 'Google Photos.desktop' WebApps
       ;;
     "Google Contacts")
       web2app-remove 'Google Contacts'
-      app2folder-remove 'Google Contacts.desktop' WebApps
+      #app2folder-remove 'Google Contacts.desktop' WebApps
       ;;
     "Tailscale")
       web2app-remove 'Tailscale'
-      app2folder-remove 'Tailscale.desktop' WebApps
+      #app2folder-remove 'Tailscale.desktop' WebApps
       ;;
     esac
   done
