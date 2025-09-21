@@ -9,13 +9,8 @@ trap 'echo "Omakub installation failed! You can retry by running: source ~/.loca
 # Check the distribution name and version and abort if incompatible
 source ~/.local/share/omakub/install/check-version.sh
 
-# Load environment helpers (idempotent). Prefer user-installed path if present.
-if [[ -f "$HOME/.local/share/omakub/lib/env.sh" ]]; then
-  # user may have a local copy installed in their home
-  source "$HOME/.local/share/omakub/lib/env.sh"
-else
-  source "$(dirname "$0")/install/lib/env.sh"
-fi
+# Load environment helpers
+source ~/.local/share/omakub/install/lib/env.sh
 
 # Ask for app choices
 echo "Get ready to make a few choices..."
