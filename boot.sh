@@ -19,6 +19,7 @@ sudo apt-get install -y git >/dev/null
 
 echo "Cloning Omakub..."
 rm -rf ~/.local/share/omakub
+git clone https://github.com/omcantu/omakub-kubuntu.git ~/.local/share/omakub >/dev/null
 
 echo "Installation starting..."
 source ~/.local/share/omakub/install.sh
