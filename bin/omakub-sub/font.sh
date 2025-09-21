@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Source shared env helpers if available (idempotent)
+if [[ -f "$HOME/.local/share/omakub/lib/env.sh" ]]; then
+	source "$HOME/.local/share/omakub/lib/env.sh"
+else
+	# fall back to repo copy (works when executed from repo root)
+	source "$(dirname "$(dirname "$0")")/install/lib/env.sh" || true
+fi
+
 set_font() {
 	local font_name=$1
 	local url=$2
@@ -18,7 +26,11 @@ set_font() {
 		source $OMAKUB_PATH/ascii.sh
 	fi
 
-	kwriteconfig5 --file kdeglobals --group General --key fixed "$font_name,10,-1,5,50,0,0,0,0,0"
+		if [[ -n "${KWRC:-}" ]]; then
+			$KWRC --file kdeglobals --group General --key fixed "$font_name,10,-1,5,50,0,0,0,0,0"
+		else
+			echo "Warning: kwriteconfig not found; skipping kdeglobals font setting"
+		fi
 	cp "$OMAKUB_PATH/configs/alacritty/fonts/$file_name.toml" ~/.config/alacritty/font.toml
 	sed -i "s/\"editor.fontFamily\": \".*\"/\"editor.fontFamily\": \"$font_name\"/g" ~/.config/Code/User/settings.json
 }

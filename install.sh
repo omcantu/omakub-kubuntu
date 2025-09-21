@@ -9,6 +9,14 @@ trap 'echo "Omakub installation failed! You can retry by running: source ~/.loca
 # Check the distribution name and version and abort if incompatible
 source ~/.local/share/omakub/install/check-version.sh
 
+# Load environment helpers (idempotent). Prefer user-installed path if present.
+if [[ -f "$HOME/.local/share/omakub/lib/env.sh" ]]; then
+  # user may have a local copy installed in their home
+  source "$HOME/.local/share/omakub/lib/env.sh"
+else
+  source "$(dirname "$0")/install/lib/env.sh"
+fi
+
 # Ask for app choices
 echo "Get ready to make a few choices..."
 source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
@@ -19,8 +27,12 @@ source ~/.local/share/omakub/install/identification.sh
 if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
   echo "Installing desktop tools and terminal tools"
   # Ensure computer doesn't go to sleep or lock while installing (KDE/Plasma)
-  kwriteconfig5 --file kscreenlockerrc --group Daemon --key Autolock false
-  kwriteconfig5 --file powermanagementprofilesrc --group AC --key idleTime 0
+  if [[ -n "$KWRC" ]]; then
+    $KWRC --file kscreenlockerrc --group Daemon --key Autolock false
+    $KWRC --file powermanagementprofilesrc --group AC --key idleTime 0
+  else
+    echo "Warning: kwriteconfig5/6 not found; skipping Autolock/idleTime change"
+  fi
 
 
   echo "Installing terminal and desktop tools..."
@@ -32,8 +44,12 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
   source ~/.local/share/omakub/install/desktop.sh
 
   # Revert to normal idle and lock settings (KDE/Plasma)
-  kwriteconfig5 --file kscreenlockerrc --group Daemon --key Autolock true
-  kwriteconfig5 --file powermanagementprofilesrc --group AC --key idleTime 300
+  if [[ -n "$KWRC" ]]; then
+    $KWRC --file kscreenlockerrc --group Daemon --key Autolock true
+    $KWRC --file powermanagementprofilesrc --group AC --key idleTime 300
+  else
+    echo "Warning: kwriteconfig5/6 not found; skipping revert of Autolock/idleTime"
+  fi
 
 else
   echo "Only installing terminal tools..."
