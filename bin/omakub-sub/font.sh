@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Source shared env helpers if available (idempotent)
-if [[ -f "$HOME/.local/share/omakub/lib/env.sh" ]]; then
-	source "$HOME/.local/share/omakub/lib/env.sh"
+if [[ -f "$HOME/.local/share/omakub/install/lib/env.sh" ]]; then
+	source "$HOME/.local/share/omakub/install/lib/env.sh"
 else
 	# fall back to repo copy (works when executed from repo root)
 	source "$(dirname "$(dirname "$0")")/install/lib/env.sh" || true
