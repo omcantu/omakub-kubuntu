@@ -9,6 +9,23 @@ export OMAKUB_ENV_LOADED=1
 export OMAKUB_DE="${XDG_CURRENT_DESKTOP:-}"
 export OMAKUB_SESSION_TYPE="${XDG_SESSION_TYPE:-}"
 
+if command -v dnf >/dev/null 2>&1; then
+    PKG_MGR=dnf
+elif command -v apt >/dev/null 2>&1; then
+    PKG_MGR=apt
+else
+    PKG_MGR=""
+fi
+export PKG_MGR
+# helper to run package manager safely
+run_pkg_mgr() {
+  if [[ -z "$PKG_MGR" ]]; then
+    echo "Warning: no package manager available; skipping: $*"
+    return 1
+  fi
+  sudo "$PKG_MGR" "$@"
+}
+
 # pick kwriteconfig binary (prefer v6)
 if command -v kwriteconfig6 >/dev/null 2>&1; then
   KWRC=kwriteconfig6
