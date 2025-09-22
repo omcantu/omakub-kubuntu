@@ -1,7 +1,8 @@
 #!/bin/bash
 
-cp ~/.local/share/omakub/configs/xcompose ~/.XCompose
-ibus restart
+cp $HOME/.local/share/omakub/configs/xcompose $HOME/.XCompose
+# not restarting ibus as it causes issues with plasma
+#ibus restart
 
 # Define the directory and file path
 ENV_DIR="$HOME/.config/plasma-workspace/env"
