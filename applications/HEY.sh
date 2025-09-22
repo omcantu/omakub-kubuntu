@@ -10,7 +10,7 @@ Exec=google-chrome --app="https://app.hey.com/" --name=HEY --class=HEY
 Terminal=false
 Type=Application
 Icon=/home/$USER/.local/share/omakub/applications/icons/HEY.png
-Categories=GTK;
+Categories=Internet;Email;
 MimeType=text/html;text/xml;application/xhtml_xml;
 StartupNotify=true
 EOF

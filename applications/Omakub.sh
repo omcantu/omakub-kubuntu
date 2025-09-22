@@ -10,6 +10,6 @@ Exec=alacritty --config-file /home/$USER/.config/alacritty/pane.toml --class=Oma
 Terminal=false
 Type=Application
 Icon=/home/$USER/.local/share/omakub/applications/icons/Omakub.png
-Categories=GTK;
+Categories=System;
 StartupNotify=false
 EOF

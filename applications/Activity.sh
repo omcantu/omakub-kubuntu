@@ -10,6 +10,6 @@ Exec=alacritty --config-file /home/$USER/.config/alacritty/btop.toml --class=Act
 Terminal=false
 Type=Application
 Icon=/home/$USER/.local/share/omakub/applications/icons/Activity.png
-Categories=GTK;
+Categories=System;
 StartupNotify=false
 EOF

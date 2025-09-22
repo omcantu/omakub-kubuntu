@@ -10,6 +10,6 @@ Exec=alacritty --config-file /home/$USER/.config/alacritty/pane.toml --class=Doc
 Terminal=false
 Type=Application
 Icon=/home/$USER/.local/share/omakub/applications/icons/Docker.png
-Categories=GTK;
+Categories=Development;
 StartupNotify=false
 EOF
