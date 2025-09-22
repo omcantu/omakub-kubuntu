@@ -2,5 +2,9 @@
 source ~/.local/share/omakub/install/lib/env.sh
 
 sudo $PKG_MGR install -y flatpak
-sudo $PKG_MGR install -y plasma-discover-backend-flatpak
+if [ "$OS_NAME" = "Ubuntu" ]; then
+  sudo $PKG_MGR install -y plasma-discover-backend-flatpak
+else
+  sudo $PKG_MGR install -y plasma-discover-flatpak
+fi
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
