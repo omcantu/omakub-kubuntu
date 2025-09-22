@@ -5,5 +5,5 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   # FIXME: Get this out of snap
   sudo snap install pinta
 else
-  flatpak install flathub com.github.PintaProject.Pinta
+  flatpak install -y flathub com.github.PintaProject.Pinta
 fi
