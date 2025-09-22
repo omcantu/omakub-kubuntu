@@ -1,13 +1,27 @@
 #!/bin/bash
 
-source "$HOME/.local/share/omakub/install/lib/env.sh"
-
-envsubst < ~/.local/share/omakub/configs/xcompose > ~/.XCompose
+cp ~/.local/share/omakub/configs/xcompose ~/.XCompose
 ibus restart
-if command -v run_kwriteconfig >/dev/null 2>&1; then
-	run_kwriteconfig --file ~/.config/kxkbrc --group Layout --key Options "compose:caps"
-elif [[ -n "${KWRC:-}" ]]; then
-	$KWRC --file ~/.config/kxkbrc --group Layout --key Options "compose:caps"
-else
-	echo "Warning: kwriteconfig not available; skipping xcompose option"
-fi
+
+# Define the directory and file path
+ENV_DIR="$HOME/.config/plasma-workspace/env"
+SCRIPT_FILE="$ENV_DIR/set_compose_key.sh"
+
+# 1. Create the directory if it doesn't exist
+echo "Creating directory: $ENV_DIR"
+mkdir -p "$ENV_DIR"
+
+# 2. Create the file and add content
+echo "Creating script file: $SCRIPT_FILE"
+# Use a "here document" to write the content cleanly
+cat > "$SCRIPT_FILE" << EOF
+#!/bin/bash
+setxkbmap -option "compose:caps"
+EOF
+
+# 3. Make the script executable
+echo "Making script executable..."
+chmod +x "$SCRIPT_FILE"
+
+echo "✅ Script created and configured successfully!"
+echo "The compose key will be set to Caps Lock on your next login."
