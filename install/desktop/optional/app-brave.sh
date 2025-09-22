@@ -8,7 +8,7 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   sudo $PKG_MGR install -y brave-browser
 else
   # Add Brave browser repository for Fedora
-  sudo $PKG_MGR config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  sudo $PKG_MGR config-manager addrepo  --overwrite --from-repofile https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
   # Install Brave browser
   sudo $PKG_MGR install -y brave-browser

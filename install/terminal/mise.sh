@@ -14,7 +14,7 @@ else
   sudo $PKG_MGR install -y gpg wget curl
 
   # Add mise repository for Fedora
-  sudo $PKG_MGR config-manager addrepo --from-repofile=https://mise.jdx.dev/rpm/mise.repo --overwrite
+  sudo $PKG_MGR config-manager addrepo  --overwrite --from-repofile=https://mise.jdx.dev/rpm/mise.repo --overwrite
   sudo rpm --import https://mise.jdx.dev/gpg-key.pub
 
   # Install mise

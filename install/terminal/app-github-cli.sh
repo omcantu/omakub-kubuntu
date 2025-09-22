@@ -8,6 +8,6 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
 	sudo $PKG_MGR update &&
 	sudo $PKG_MGR install gh -y
 else
-  sudo $PKG_MGR config-manager addrepo --from-repofile https://cli.github.com/packages/rpm/gh-cli.repo
+  sudo $PKG_MGR config-manager addrepo  --overwrite --from-repofile https://cli.github.com/packages/rpm/gh-cli.repo
   sudo $PKG_MGR install gh -y
 fi

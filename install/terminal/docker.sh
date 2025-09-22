@@ -19,7 +19,7 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   echo '{"log-driver":"json-file","log-opts":{"max-size":"10m","max-file":"5"}}' | sudo tee /etc/docker/daemon.json
 else
   # Add the official Docker repo for Fedora
-  sudo $PKG_MGR config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo --overwrite
+  sudo $PKG_MGR config-manager addrepo  --overwrite --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo --overwrite
 
   # Install Docker engine and standard plugins
   sudo $PKG_MGR install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
