@@ -14,8 +14,17 @@ echo -e "$ascii_art"
 echo "=> Omakub is for fresh Ubuntu 24.04+ installations only!"
 echo -e "\nBegin installation (or abort with ctrl+c)..."
 
-# Load environment helpers
-source ~/.local/share/omakub/install/lib/env.sh
+if command -v dnf >/dev/null 2>&1; then
+    PKG_MGR=dnf
+    OS_NAME="Fedora"
+elif command -v apt >/dev/null 2>&1; then
+    PKG_MGR=apt
+    OS_NAME="Ubuntu"
+else
+    echo "Warning : no supported package manager found (dnf or apt)"
+    return 1
+fi
+export PKG_MGR
 
 sudo $PKG_MGR update >/dev/null
 sudo $PKG_MGR install -y git >/dev/null
