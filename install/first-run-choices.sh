@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Only ask for default desktop app choices when running Gnome
-# Replacing check for Gnome with KDE since this is for Kubuntu
-# TODO: make sure that these apps do not require GNOME specifically
+# Replacing check for Gnome with KDE
 if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
   OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Cursor", "Steam", "Virtualbox, "Discord", OBS Studio")
   DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Steam'
