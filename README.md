@@ -1,10 +1,10 @@
-# Omakub-Kubuntu (fork of Omakub)
+# Omakubtu (fork of Omakub)
 
-Turn a fresh Kubuntu installation into a fully-configured, beautiful, and modern web development system by running a single command. That's the one-line pitch for Omakub. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools. Omakub is an opinionated take on what Linux can be at its best.
+Turn a fresh Kubuntu or Fedora KDE installation into a fully-configured, beautiful, and modern web development system by running a single command. That's the one-line pitch for Omakub. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools. Omakub is an opinionated take on what Linux can be at its best.
 
 Watch the introduction video and read more at [omakub.org](https://omakub.org).
 
-This is my personal fork in an attempt to do similar installation for Kubuntu as I prefer the KDE experience to Gnome. This will not include any KDE Plasma themes. That part will need to be made manually.
+This is my personal fork in an attempt to do similar installation for Kubuntu and Fedora KDE as I prefer the KDE experience to Gnome. This will not include any KDE Plasma themes. That part will need to be made manually.
 
 ## License
 
