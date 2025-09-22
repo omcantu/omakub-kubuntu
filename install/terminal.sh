@@ -1,9 +1,9 @@
 #!/bin/bash
-
+source ~/.local/share/omakub/install/lib/env.sh
 # Needed for all installers
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y curl git unzip
+sudo $PKG_MGR update -y
+sudo $PKG_MGR upgrade -y
+sudo $PKG_MGR install -y curl git unzip
 
 # Run terminal installers
 for installer in ~/.local/share/omakub/install/terminal/*.sh; do source $installer; done

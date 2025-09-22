@@ -1,3 +1,3 @@
 #!/bin/bash
-
-sudo apt remove -y tailscale
+source ~/.local/share/omakub/install/lib/env.sh
+sudo $PKG_MGR remove -y tailscale

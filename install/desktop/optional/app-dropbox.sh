@@ -1,4 +1,11 @@
 #!/bin/bash
+source ~/.local/share/omakub/install/lib/env.sh
 
-# Sync files across machines using https://dropbox.com
-sudo apt install -y nautilus-dropbox >/dev/null
+if [ "$OS_NAME" = "Ubuntu" ]; then
+  # Sync files across machines using https://dropbox.com
+  sudo $PKG_MGR install -y nautilus-dropbox >/dev/null
+else
+  # Sync files across machines using https://dropbox.com
+  flatpak install -y flathub com.dropbox.Client
+fi
+

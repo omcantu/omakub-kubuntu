@@ -1,3 +1,3 @@
 #!/bin/bash
-
-sudo apt remove --purge -y signal-desktop
+source ~/.local/share/omakub/install/lib/env.sh
+sudo $PKG_MGR remove --purge -y signal-desktop

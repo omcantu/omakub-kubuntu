@@ -1,7 +1,7 @@
 #!/bin/bash
-
+source ~/.local/share/omakub/install/lib/env.sh
 # Alacritty is a GPU-powered and highly extensible terminal. See https://alacritty.org/
-sudo apt install -y alacritty
+sudo $PKG_MGR install -y alacritty
 mkdir -p ~/.config/alacritty
 cp ~/.local/share/omakub/configs/alacritty.toml ~/.config/alacritty/alacritty.toml
 cp ~/.local/share/omakub/configs/alacritty/shared.toml ~/.config/alacritty/shared.toml

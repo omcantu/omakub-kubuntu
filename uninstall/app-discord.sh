@@ -1,1 +1,2 @@
-sudo apt remove --purge -y discord
+source ~/.local/share/omakub/install/lib/env.sh
+sudo $PKG_MGR remove --purge -y discord

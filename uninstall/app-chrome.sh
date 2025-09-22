@@ -1,3 +1,3 @@
 #!/bin/bash
-
-sudo apt remove -y google-chrome-stable
+source ~/.local/share/omakub/install/lib/env.sh
+sudo $PKG_MGR remove -y google-chrome-stable

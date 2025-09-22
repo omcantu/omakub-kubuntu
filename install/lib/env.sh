@@ -11,10 +11,13 @@ export OMAKUB_SESSION_TYPE="${XDG_SESSION_TYPE:-}"
 
 if command -v dnf >/dev/null 2>&1; then
     PKG_MGR=dnf
+    OS_NAME="Fedora"
 elif command -v apt >/dev/null 2>&1; then
     PKG_MGR=apt
+    OS_NAME="Ubuntu"
 else
-    PKG_MGR=""
+    echo "Warning : no supported package manager found (dnf or apt)"
+    return 1
 fi
 export PKG_MGR
 # helper to run package manager safely

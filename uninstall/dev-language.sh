@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ~/.local/share/omakub/install/lib/env.sh
 # Uninstall default programming languages
 if [[ -v OMAKUB_FIRST_RUN_LANGUAGES ]]; then
   languages=$OMAKUB_FIRST_RUN_LANGUAGES
@@ -22,8 +22,8 @@ if [[ -n $languages ]]; then
       mise uninstall go@latest
       ;;
     PHP)
-      sudo apt -y purge php php-{curl,apcu,intl,mbstring,opcache,pgsql,mysql,sqlite3,redis,xml,zip}
-      sudo apt -y autoremove
+      sudo $PKG_MGR -y purge php php-{curl,apcu,intl,mbstring,opcache,pgsql,mysql,sqlite3,redis,xml,zip}
+      sudo $PKG_MGR -y autoremove
       sudo rm /usr/local/bin/composer
       ;;
     Python)

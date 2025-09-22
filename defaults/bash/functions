@@ -52,7 +52,7 @@ Exec=google-chrome --app="$APP_URL" --name="$APP_NAME" --class="$APP_NAME" --win
 Terminal=false
 Type=Application
 Icon=$ICON_PATH
-Categories=GTK;
+Categories=WebApps;Internet;
 MimeType=text/html;text/xml;application/xhtml_xml;
 StartupNotify=true
 EOF
