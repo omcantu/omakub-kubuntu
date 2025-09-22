@@ -9,6 +9,6 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   cd -
 else
   sudo $PKG_MGR install -y fedora-workstation-repositories
-  sudo $PKG_MGR config-manager --set-enabled google-chrome
+  sudo $PKG_MGR config-manager setopt google-chrome.enabled=1
   sudo $PKG_MGR install -y google-chrome-stable
 fi
