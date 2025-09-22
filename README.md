@@ -6,6 +6,10 @@ Watch the introduction video and read more at [omakub.org](https://omakub.org).
 
 This is my personal fork in an attempt to do similar installation for Kubuntu and Fedora KDE as I prefer the KDE experience to Gnome. This will not include any KDE Plasma themes. That part will need to be made manually.
 
+## Install
+``` sh
+wget -qO- https://raw.githubusercontent.com/omcantu/omakubtu/refs/heads/main/boot.sh | bash
+```
 ## License
 
 Omakub is released under the [MIT License](https://opensource.org/licenses/MIT).
