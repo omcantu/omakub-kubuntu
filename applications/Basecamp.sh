@@ -10,7 +10,7 @@ Exec=google-chrome --app="https://launchpad.37signals.com" --name=Basecamp --cla
 Terminal=false
 Type=Application
 Icon=/home/$USER/.local/share/omakub/applications/icons/Basecamp.png
-Categories=Internet;
+Categories=Network;Internet;
 MimeType=text/html;text/xml;application/xhtml_xml;
 StartupNotify=true
 EOF
