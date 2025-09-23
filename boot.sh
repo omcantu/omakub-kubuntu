@@ -17,6 +17,7 @@ echo -e "\nBegin installation (or abort with ctrl+c)..."
 if command -v dnf >/dev/null 2>&1; then
     PKG_MGR=dnf
     OS_NAME="Fedora"
+    sudo $PKG_MGR clean all >/dev/null
     sudo $PKG_MGR update -y >/dev/null
 elif command -v apt >/dev/null 2>&1; then
     PKG_MGR=apt
