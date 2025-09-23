@@ -5,7 +5,7 @@ source ~/.local/share/omakub/install/lib/env.sh
 if [ "$OS_NAME" = "Ubuntu" ]; then
   sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 fi
-sudo $PKG_MGR update -y
+sudo $PKG_MGR update
 sudo $PKG_MGR install -y fastfetch
 
 # Only attempt to set configuration if fastfetch is not already set

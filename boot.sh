@@ -17,16 +17,17 @@ echo -e "\nBegin installation (or abort with ctrl+c)..."
 if command -v dnf >/dev/null 2>&1; then
     PKG_MGR=dnf
     OS_NAME="Fedora"
+    sudo $PKG_MGR update -y >/dev/null
 elif command -v apt >/dev/null 2>&1; then
     PKG_MGR=apt
     OS_NAME="Ubuntu"
+    sudo $PKG_MGR update >/dev/null
 else
     echo "Warning : no supported package manager found (dnf or apt)"
     return 1
 fi
 export PKG_MGR
 
-sudo $PKG_MGR update >/dev/null
 sudo $PKG_MGR install -y git >/dev/null
 
 echo "Cloning Omakub..."

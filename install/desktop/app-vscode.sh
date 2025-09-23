@@ -13,7 +13,7 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   rm -f packages.microsoft.gpg
   cd -
 
-  sudo $PKG_MGR update -y
+  sudo $PKG_MGR update
   sudo $PKG_MGR install -y code
 else
   # Add Microsoft's VSCode repository for Fedora
