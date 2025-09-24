@@ -21,6 +21,7 @@
   "git.openRepositoryInParentFolders": "always",
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": true,
-  "workbench.colorTheme": "Dracula",
-  "window.titleBarStyle": "custom"
+  "workbench.colorTheme": "Dracula Theme",
+  "window.titleBarStyle": "custom",
+  "window.openFoldersInNewWindow": "on"
 }
