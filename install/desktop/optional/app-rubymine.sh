@@ -1,8 +1,5 @@
 #!/bin/bash
 source ~/.local/share/omakub/install/lib/env.sh
-if [ "$OS_NAME" = "Ubuntu" ]; then
-  sudo snap install rubymine --classic
-else
   # Define the download URL for the latest RubyMine release.
   # You might need to check JetBrains' website for the most recent version.
   RUBYMINE_VERSION="2025.2.2"  # Example version
