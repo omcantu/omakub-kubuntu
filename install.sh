@@ -40,7 +40,3 @@ else
     echo "Warning: kwriteconfig5/6 not found; skipping revert of Autolock/idleTime"
   fi
   echo "Omakubtu installation complete!"
-else
-  echo "Only installing terminal tools..."
-  source ~/.local/share/omakub/install/terminal.sh
-fi
