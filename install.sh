@@ -39,4 +39,4 @@ if [[ -n "$KWRC" ]]; then
 else
   echo "Warning: kwriteconfig5/6 not found; skipping revert of Autolock/idleTime"
 fi
-echo "Omakubtu installation complete!"
+echo "Finished!!!!"
