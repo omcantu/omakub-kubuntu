@@ -21,22 +21,22 @@ if [[ -n "$KWRC" ]]; then
   $KWRC --file kscreenlockerrc --group Daemon --key Autolock false
   $KWRC --file powermanagementprofilesrc --group AC --key idleTime 0
 else
-  echo "Warning: kwriteconfig5/6 not found; skipping Autolock/idleTime change"
+echo "Warning: kwriteconfig5/6 not found; skipping Autolock/idleTime change"
 
 
-  echo "Installing terminal and desktop tools..."
+echo "Installing terminal and desktop tools..."
 
-  # Install terminal tools
-  source ~/.local/share/omakub/install/terminal.sh
+# Install terminal tools
+source ~/.local/share/omakub/install/terminal.sh
 
-  # Install desktop tools and tweaks
-  source ~/.local/share/omakub/install/desktop.sh
+# Install desktop tools and tweaks
+source ~/.local/share/omakub/install/desktop.sh
 
-  # Revert to normal idle and lock settings (KDE/Plasma)
-  if [[ -n "$KWRC" ]]; then
-    $KWRC --file kscreenlockerrc --group Daemon --key Autolock true
-    $KWRC --file powermanagementprofilesrc --group AC --key idleTime 300
-  else
-    echo "Warning: kwriteconfig5/6 not found; skipping revert of Autolock/idleTime"
-  fi
-  echo "Omakubtu installation complete!"
+# Revert to normal idle and lock settings (KDE/Plasma)
+if [[ -n "$KWRC" ]]; then
+  $KWRC --file kscreenlockerrc --group Daemon --key Autolock true
+  $KWRC --file powermanagementprofilesrc --group AC --key idleTime 300
+else
+  echo "Warning: kwriteconfig5/6 not found; skipping revert of Autolock/idleTime"
+fi
+echo "Omakubtu installation complete!"
