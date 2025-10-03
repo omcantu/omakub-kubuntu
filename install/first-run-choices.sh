@@ -1,12 +1,8 @@
 #!/bin/bash
 
-# Only ask for default desktop app choices when running Gnome
-# Replacing check for Gnome with KDE
-if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
-  OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Steam" "Virtualbox" "Discord" "OBS Studio")
-  DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Steam'
-  export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 7 --header "Select optional apps" | tr ' ' '-')
-fi
+OPTIONAL_APPS=("1password" "Spotify" "Zoom" "Dropbox" "Steam" "Virtualbox" "Discord" "OBS Studio")
+DEFAULT_OPTIONAL_APPS='1password,Spotify,Zoom,Steam'
+export OMAKUB_FIRST_RUN_OPTIONAL_APPS=$(gum choose "${OPTIONAL_APPS[@]}" --no-limit --selected $DEFAULT_OPTIONAL_APPS --height 7 --header "Select optional apps" | tr ' ' '-')
 
 AVAILABLE_LANGUAGES=("Ruby on Rails" "Node.js" "Go" "PHP" "Python" "Elixir" "Rust" "Java")
 SELECTED_LANGUAGES="Ruby on Rails","Node.js"
