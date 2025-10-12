@@ -9,5 +9,5 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   rm discord.deb
   cd -
 else
-  flatpak install -y flathub com.discordapp.Discord
+  flatpak install -y --user flathub com.discordapp.Discord
 fi
