@@ -12,5 +12,5 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
 	sudo $PKG_MGR install -y signal-desktop
 else
   # Add Signal repository for Fedora
-	flatpak install -y flathub org.signal.Signal
+	flatpak install -y --user flathub org.signal.Signal
 fi
