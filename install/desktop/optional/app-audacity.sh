@@ -1,3 +1,3 @@
 #!/bin/bash
 
-flatpak install -y flathub org.audacityteam.Audacity
+flatpak install -y --user flathub org.audacityteam.Audacity
