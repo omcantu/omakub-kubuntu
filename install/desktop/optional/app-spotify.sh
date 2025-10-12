@@ -9,5 +9,5 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   sudo $PKG_MGR install -y spotify-client
 else
   # Stream music using https://spotify.com
-  flatpak install -y flathub com.spotify.Client
+  flatpak install -y --user flathub com.spotify.Client
 fi
