@@ -19,7 +19,7 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
   cd -
 else
   # Add Typora repository for Fedora
-  flatpak install -y flathub io.typora.Typora
+  flatpak install -y --user flathub io.typora.Typora
 fi
 
 # Add iA Typora theme
