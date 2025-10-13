@@ -12,13 +12,24 @@ if [ "$OS_NAME" = "Ubuntu" ]; then
       echo "Removing existing vscode.list file..."
       sudo rm -f /etc/apt/sources.list.d/vscode.list
   fi
+  if [ -f "/etc/apt/sources.list.d/vscode.sources" ]; then
+      echo "Removing existing vscode.sources file..."
+      sudo rm -f /etc/apt/sources.list.d/vscode.sources
+  fi
   
   # Download and install the GPG key
   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >packages.microsoft.gpg
   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
   
   # Add the VS Code repository to a new, clean file
-  echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+  sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null << EOF
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
   
   # Clean up
   rm -f packages.microsoft.gpg
