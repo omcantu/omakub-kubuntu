@@ -9,3 +9,4 @@ echo "Plasma Discover"
 #  sudo $PKG_MGR install -y plasma-discover-flatpak
 fi
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
