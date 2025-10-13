@@ -2,7 +2,7 @@
 source ~/.local/share/omakub/install/lib/env.sh
 
 if [ "$OS_NAME" = "Ubuntu" ]; then
-  sudo $PKG_MGR install -y fzf ripgrep bat eza zoxide plocate apache2-utils fd-find tldr
+  sudo $PKG_MGR install -y fzf ripgrep bat eza zoxide plocate apache2-utils fd-find tealdeer
 else
   sudo $PKG_MGR install -y fzf ripgrep bat zoxide plocate httpd-tools fd-find tldr
   #manual install for eza on fedora
